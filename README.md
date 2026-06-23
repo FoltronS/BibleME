@@ -1,19 +1,50 @@
-# BibleMe
+# BibleMe 🕊️
 
-A Christian daily devotional web app with an AI companion named Bibly. Built for Indonesian Christians, with English and Mandarin support.
+BibleMe is a personal Christian daily devotional app powered by AI. Every day, it chooses a Bible verse relevant to what you are going through, then generates a devotional story, a personal reflection, and a warm letter — all written by Bibly, your AI spiritual companion.
+
+Built primarily for Indonesian Christians, with full support for English and Mandarin.
+
+---
+
+## How It Works (for users)
+
+1. **First visit** — Enter your nickname and optionally share what you are struggling with right now (e.g. "feeling lost", "family conflict", "loneliness"). This is private and stays on your device.
+
+2. **Daily devotional** — Every day, Bibly selects a Bible verse that speaks directly to your situation. You get three things:
+   - **Firman / Verse** — The verse of the day in your language (Indonesian Terjemahan Baru, English NKJV, or Mandarin OCCB)
+   - **Renungan / Reflection** — A short story-driven devotional built around the verse
+   - **Surat / Letter** — A warm personal letter from Bibly addressed to you
+
+3. **Chat with Bibly** — Open the chat tab to talk to Bibly about anything on your heart. Bibly responds with empathy, grounded in scripture, in whatever language you write in.
+
+4. **Listen** — Tap the speaker icon on any card to have it read aloud. Works in all three languages.
+
+5. **Speak** — In chat, tap the microphone to speak instead of type. Your words appear in real time.
+
+6. **Settings** — Change your name, update your current struggle, switch language, or adjust reading speed anytime from the settings panel.
+
+Your data (name, struggle, language preference, and cached devotionals) is stored only on your own device. No account required, no data sent to any server except the AI and Bible API calls.
+
+---
 
 ## Features
 
-- Daily verse selection tailored to the user's personal struggle
-- AI-generated devotional story, reflection, and personal letter
-- Bibly chat — a streaming spiritual companion
-- Text-to-speech reading in all three languages
-- Voice input (speech-to-text) for chat
-- Fully offline-capable after load (localStorage caching)
-- Responsive layout — works on mobile and desktop
-- No login, no database — all data stored locally
+- Daily verse tailored to your personal struggle, verified for relevance by AI
+- Story-driven devotional — real historical figures, Bible characters, or meaningful parables
+- Personal letter from Bibly signed as a caring spiritual friend
+- Streaming AI chat companion (Bibly)
+- Text-to-speech in Indonesian (Gadis), English (Zira), and Mandarin (Yaoyao)
+- Voice input for chat with live transcript as you speak
+- Daily content cached locally — no repeated API calls on refresh
+- Same verse preserved when switching languages
+- Responsive — works on mobile and desktop
+- No login, no database, all data stays on your device
 
-## Tech Stack
+---
+
+## For Developers
+
+### Tech Stack
 
 | Layer | Choice |
 |-------|--------|
@@ -24,30 +55,23 @@ A Christian daily devotional web app with an AI companion named Bibly. Built for
 | Bible API | api.bible (EN, ZH) + mayicu.id Alkitab (ID) |
 | TTS / ASR | Web Speech API (browser-native) |
 
-## Setup
+### Setup
 
-### 1. Install dependencies
+**1. Install dependencies**
 
 ```bash
 npm install
 ```
 
-### 2. Configure environment variables
+**2. Configure environment variables**
 
-Create a `.env.local` file in the project root:
+Copy `.env.example` to `.env.local` and fill in your values:
 
-```env
-AI_BASE_URL=https://your-provider.com/v1
-AI_API_KEY=your-api-key
-AI_MODEL=your-model-name
-BIBLE_API_KEY=your-api-bible-key
+```bash
+cp .env.example .env.local
 ```
 
-To get a Bible API key, register at [api.bible](https://api.bible).
-
-To swap AI providers, change the three `AI_` variables — no code changes required.
-
-### 3. Run the development server
+**3. Run the development server**
 
 ```bash
 npm run dev
@@ -55,7 +79,18 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Project Structure
+### Environment Variables
+
+| Variable | Description |
+|----------|-------------|
+| `AI_BASE_URL` | Base URL of your OpenAI-compatible API (e.g. `https://api.openai.com/v1`) |
+| `AI_API_KEY` | Your API key |
+| `AI_MODEL` | Model name (e.g. `gpt-4o`, `claude-3-5-sonnet`) |
+| `BIBLE_API_KEY` | API key from [api.bible](https://api.bible) — free to register |
+
+To swap AI providers, only change the three `AI_` variables. No code changes required.
+
+### Project Structure
 
 ```
 src/

@@ -38,32 +38,47 @@ export async function POST(req: NextRequest) {
       passageId = cachedPassageId;
       console.log(`[verse] Reusing passageId: ${passageId}`);
     } else {
-      const aiRaw = await aiComplete({
-        messages: [
-          { role: 'system', content: verseSelectionPrompt(struggle) },
-          { role: 'user', content: 'Pick a verse for today.' },
-        ],
-        temperature: 0.9,
-        maxTokens: 50,
-      });
+      let aiRaw: string;
+      try {
+        aiRaw = await aiComplete({
+          messages: [
+            { role: 'system', content: verseSelectionPrompt(struggle) },
+            { role: 'user', content: 'Pick a verse for today.' },
+          ],
+          temperature: 0.9,
+          maxTokens: 50,
+        });
+      } catch (err) {
+        console.error('[verse] Step 1 (AI verse selection) failed:', err);
+        throw err;
+      }
       passageId = parseVerseReference(aiRaw.trim()) ?? FALLBACK_PASSAGE;
       console.log(`[verse] AI picked: "${aiRaw.trim()}" → ${passageId}`);
     }
 
     // Step 2: Fetch verse text
     let verse = await fetchWithFallbacks(locale, passageId);
-    if (!verse) throw new Error('All Bible API fallbacks failed');
+    if (!verse) {
+      console.error('[verse] Step 2 (Bible API fetch) failed for all fallbacks. locale:', locale, 'BIBLE_API_KEY set:', !!process.env.BIBLE_API_KEY);
+      throw new Error('All Bible API fallbacks failed');
+    }
 
     // Step 3: Verify relevance (skip if reusing cached passageId — already verified)
     if (!cachedPassageId) {
-      const verifyRaw = await aiComplete({
-        messages: [
-          { role: 'system', content: verifyVersePrompt(struggle, verse.reference, verse.content) },
-          { role: 'user', content: 'Verify.' },
-        ],
-        temperature: 0.3,
-        maxTokens: 30,
-      });
+      let verifyRaw: string;
+      try {
+        verifyRaw = await aiComplete({
+          messages: [
+            { role: 'system', content: verifyVersePrompt(struggle, verse.reference, verse.content) },
+            { role: 'user', content: 'Verify.' },
+          ],
+          temperature: 0.3,
+          maxTokens: 30,
+        });
+      } catch (err) {
+        console.error('[verse] Step 3 (AI verification) failed:', err);
+        throw err;
+      }
       const verifyTrimmed = verifyRaw.trim();
 
       if (verifyTrimmed.toUpperCase() === 'YES') {
