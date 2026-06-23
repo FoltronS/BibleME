@@ -1,0 +1,51 @@
+{
+  "onboarding": {
+    "step1Title": "嗨！你希望我们怎么称呼你？",
+    "step1Subtitle": "让 Bibly 每天温暖地问候你",
+    "step1Placeholder": "你的昵称...",
+    "step1Next": "下一步",
+    "step2Title": "你目前正在面对什么挣扎？",
+    "step2Hint": "（写任何内容，或留空）",
+    "step2Placeholder": "例如：我感到疲惫，需要力量...",
+    "step2Skip": "跳过",
+    "step2Next": "进入 BibleMe"
+  },
+  "home": {
+    "tabVerse": "经文",
+    "tabReflection": "灵修",
+    "tabLetter": "信",
+    "verseTitle": "今日经文",
+    "reflectionTitle": "灵修反思",
+    "letterTitle": "激励信",
+    "loadingVerse": "Bibly 正在为你寻找今日经文...",
+    "loadingReflection": "Bibly 正在为你准备灵修...",
+    "loadingLetter": "Bibly 正在为你写信...",
+    "errorMessage": "抱歉，出了点问题。请稍后再试。",
+    "retry": "重试"
+  },
+  "chat": {
+    "title": "Bibly",
+    "subtitle": "你的属灵伙伴 · 随时陪伴你",
+    "placeholder": "输入消息...",
+    "welcome": "嗨 {name}！我是 Bibly，你的属灵伙伴。今天你想聊些什么？"
+  },
+  "settings": {
+    "title": "设置",
+    "nickname": "昵称",
+    "struggle": "当前挣扎",
+    "language": "语言",
+    "ttsSpeed": "朗读速度",
+    "ttsSpeedSlow": "慢速",
+    "ttsSpeedNormal": "正常",
+    "ttsSpeedFast": "快速",
+    "reset": "退出并清除数据",
+    "resetConfirm": "确定要删除所有数据吗？",
+    "save": "保存",
+    "close": "关闭"
+  },
+  "nav": {
+    "home": "首页",
+    "chat": "Bibly",
+    "greeting": "你好，"
+  }
+}

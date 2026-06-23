@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-cream: #FDF6EC;
+  --color-ivory: #FAF3E6;
+  --color-rose: #C9A6A0;
+  --color-rose-dark: #A67D76;
+  --color-sage: #A8B5A0;
+  --color-sage-dark: #8A9982;
+  --color-charcoal: #3D3D3D;
+  --color-warm-gray: #6B6560;
+  --color-soft-gold: #D4B896;
+
+  --font-heading: var(--font-playfair);
+  --font-body: var(--font-lora);
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-charcoal);
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Placeholder always visible regardless of focus state */
+::placeholder {
+  color: var(--color-warm-gray);
+  opacity: 0.55;
+}
+
+/* Custom scrollbar for chat */
+.chat-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.chat-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.chat-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-soft-gold);
+  border-radius: 2px;
+}

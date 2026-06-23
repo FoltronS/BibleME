@@ -1,0 +1,51 @@
+{
+  "onboarding": {
+    "step1Title": "Hai! Apa nama panggilanmu?",
+    "step1Subtitle": "Biar Bibly bisa menyapamu dengan hangat setiap hari",
+    "step1Placeholder": "Nama panggilanmu...",
+    "step1Next": "Lanjut",
+    "step2Title": "Apa pergumulanmu saat ini?",
+    "step2Hint": "(Boleh tulis apa saja, atau kosongkan)",
+    "step2Placeholder": "Misalnya: Aku sedang merasa lelah dan butuh kekuatan...",
+    "step2Skip": "Lewati",
+    "step2Next": "Masuk ke BibleMe"
+  },
+  "home": {
+    "tabVerse": "Firman",
+    "tabReflection": "Renungan",
+    "tabLetter": "Surat",
+    "verseTitle": "Firman Hari Ini",
+    "reflectionTitle": "Renungan",
+    "letterTitle": "Surat Motivasi",
+    "loadingVerse": "Bibly sedang mencarikan ayat untukmu...",
+    "loadingReflection": "Bibly sedang menyiapkan renunganmu...",
+    "loadingLetter": "Bibly sedang menuliskan surat untukmu...",
+    "errorMessage": "Maaf, terjadi kesalahan. Coba lagi nanti.",
+    "retry": "Coba Lagi"
+  },
+  "chat": {
+    "title": "Bibly",
+    "subtitle": "Sahabat rohanimu · Selalu ada untukmu",
+    "placeholder": "Tulis pesan...",
+    "welcome": "Hai {name}! Aku Bibly, teman rohanimu. Ada yang ingin kamu ceritakan hari ini?"
+  },
+  "settings": {
+    "title": "Pengaturan",
+    "nickname": "Nama Panggilan",
+    "struggle": "Pergumulan",
+    "language": "Bahasa",
+    "ttsSpeed": "Kecepatan Baca",
+    "ttsSpeedSlow": "Lambat",
+    "ttsSpeedNormal": "Normal",
+    "ttsSpeedFast": "Cepat",
+    "reset": "Keluar & Hapus Data",
+    "resetConfirm": "Yakin ingin menghapus semua data?",
+    "save": "Simpan",
+    "close": "Tutup"
+  },
+  "nav": {
+    "home": "Beranda",
+    "chat": "Bibly",
+    "greeting": "Halo,"
+  }
+}

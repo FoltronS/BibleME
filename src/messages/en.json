@@ -1,0 +1,51 @@
+{
+  "onboarding": {
+    "step1Title": "Hi! What should we call you?",
+    "step1Subtitle": "So Bibly can greet you warmly every day",
+    "step1Placeholder": "Your nickname...",
+    "step1Next": "Next",
+    "step2Title": "What are you struggling with right now?",
+    "step2Hint": "(Write anything, or leave it empty)",
+    "step2Placeholder": "e.g. I'm feeling overwhelmed and need strength...",
+    "step2Skip": "Skip",
+    "step2Next": "Enter BibleMe"
+  },
+  "home": {
+    "tabVerse": "Verse",
+    "tabReflection": "Reflection",
+    "tabLetter": "Letter",
+    "verseTitle": "Verse of the Day",
+    "reflectionTitle": "Devotional Reflection",
+    "letterTitle": "Motivational Letter",
+    "loadingVerse": "Bibly is finding your verse for today...",
+    "loadingReflection": "Bibly is preparing your devotional...",
+    "loadingLetter": "Bibly is writing your letter...",
+    "errorMessage": "Sorry, something went wrong. Please try again later.",
+    "retry": "Try Again"
+  },
+  "chat": {
+    "title": "Bibly",
+    "subtitle": "Your spiritual companion · Always here for you",
+    "placeholder": "Type a message...",
+    "welcome": "Hi {name}! I'm Bibly, your spiritual companion. What would you like to share today?"
+  },
+  "settings": {
+    "title": "Settings",
+    "nickname": "Nickname",
+    "struggle": "Current Struggle",
+    "language": "Language",
+    "ttsSpeed": "Reading Speed",
+    "ttsSpeedSlow": "Slow",
+    "ttsSpeedNormal": "Normal",
+    "ttsSpeedFast": "Fast",
+    "reset": "Logout & Clear Data",
+    "resetConfirm": "Are you sure you want to delete all data?",
+    "save": "Save",
+    "close": "Close"
+  },
+  "nav": {
+    "home": "Home",
+    "chat": "Bibly",
+    "greeting": "Hello,"
+  }
+}
