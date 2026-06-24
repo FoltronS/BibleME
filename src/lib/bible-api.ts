@@ -170,7 +170,7 @@ export async function fetchAlkitabVerse(passageId: string): Promise<VerseData> {
 }
 
 export async function fetchVerse(bibleId: string, passageId: string): Promise<VerseData> {
-  const apiKey = process.env.BIBLE_API_KEY || '';
+  const apiKey = (process.env.BIBLE_API_KEY || '').trim().replace(/\s+/g, '');
   const headers = { 'api-key': apiKey };
 
   if (isRange(passageId)) {
