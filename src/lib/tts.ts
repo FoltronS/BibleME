@@ -143,6 +143,8 @@ function cleanChinese(text: string): string {
 function cleanEnglish(text: string): string {
   let result = text;
   result = result.replace(/\bLORD\b/g, 'Lord');
+  // Bible verse references: "30:21" → "30, 21" (colon is read literally by Zira)
+  result = result.replace(/(\d+):(\d+)/g, '$1, $2');
   return result;
 }
 
