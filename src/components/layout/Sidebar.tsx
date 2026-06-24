@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link, usePathname } from '@/i18n/navigation';
+import { LanguageSwitcher } from '@/components/layout/LanguageSwitcher';
 import { SettingsPanel } from '@/components/settings/SettingsPanel';
 
 export function Sidebar() {
@@ -64,6 +65,13 @@ export function Sidebar() {
             {t('chat')}
           </Link>
         </nav>
+
+        {/* Language switcher */}
+        {!isOnboarding && (
+          <div className="px-3 py-2">
+            <LanguageSwitcher />
+          </div>
+        )}
 
         {/* Settings at bottom */}
         {!isOnboarding && <button

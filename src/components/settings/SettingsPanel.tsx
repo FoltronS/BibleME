@@ -3,19 +3,10 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useUser } from '@/context/user-context';
-import { useRouter } from '@/i18n/navigation';
-import { Locale } from '@/lib/types';
-
-const LANGUAGES: { value: Locale; label: string }[] = [
-  { value: 'id', label: 'Bahasa Indonesia' },
-  { value: 'en', label: 'English' },
-  { value: 'zh', label: '中文' },
-];
 
 export function SettingsPanel({ onClose }: { onClose: () => void }) {
   const t = useTranslations('settings');
-  const { nickname, struggle, locale, ttsSpeed, updateProfile, resetAll } = useUser();
-  const router = useRouter();
+  const { nickname, struggle, ttsSpeed, updateProfile, resetAll } = useUser();
 
   const [localNickname, setLocalNickname] = useState(nickname);
   const [localStruggle, setLocalStruggle] = useState(struggle);
@@ -27,11 +18,6 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
       ttsSpeed: localSpeed,
     });
     onClose();
-  }
-
-  function handleLanguageChange(newLocale: Locale) {
-    updateProfile({ locale: newLocale });
-    router.replace('/', { locale: newLocale });
   }
 
   function handleReset() {
@@ -74,25 +60,6 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
             rows={2}
             className="w-full bg-white/50 border border-soft-gold/40 rounded-xl px-4 py-3 text-charcoal resize-none focus:outline-none focus:ring-2 focus:ring-rose/30"
           />
-        </div>
-
-        <div className="space-y-1">
-          <label className="text-sm text-warm-gray">{t('language')}</label>
-          <div className="flex gap-2">
-            {LANGUAGES.map((lang) => (
-              <button
-                key={lang.value}
-                onClick={() => handleLanguageChange(lang.value)}
-                className={`flex-1 py-2 rounded-xl text-sm font-medium transition-colors ${
-                  locale === lang.value
-                    ? 'bg-rose text-white'
-                    : 'bg-white/50 border border-soft-gold/40 text-charcoal hover:bg-sage/20'
-                }`}
-              >
-                {lang.label}
-              </button>
-            ))}
-          </div>
         </div>
 
         <div className="space-y-1">
