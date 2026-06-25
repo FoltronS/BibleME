@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { aiComplete } from '@/lib/ai-client';
 import { fetchVerse, fetchAlkitabVerse } from '@/lib/bible-api';
 import { BIBLE_MAP, parseVerseReference } from '@/lib/bible-ids';
-import { verseSelectionPrompt, verifyVersePrompt } from '@/lib/prompts';
+import { summarizeStrugglePrompt, verseSelectionPrompt, verifyVersePrompt } from '@/lib/prompts';
 import { Locale, VerseData } from '@/lib/types';
 
 const FALLBACK_PASSAGE = 'JHN.3.16';
@@ -32,6 +32,27 @@ export async function POST(req: NextRequest) {
       passageId?: string;
     };
 
+    // Step 0: Summarize raw struggle into a focused core need (skip if reusing passageId or already short)
+    const needsSummary = !cachedPassageId && struggle && struggle.trim().length > 120;
+    let coreStruggle = struggle;
+    if (needsSummary) {
+      try {
+        const summary = await aiComplete({
+          messages: [
+            { role: 'system', content: summarizeStrugglePrompt(struggle) },
+            { role: 'user', content: 'Summarize.' },
+          ],
+          temperature: 0.3,
+          maxTokens: 40,
+        });
+        coreStruggle = summary.trim();
+        console.log(`[verse] Core struggle: "${coreStruggle}"`);
+      } catch (err) {
+        console.warn('[verse] Step 0 (struggle summary) failed, using raw struggle:', err);
+        // fallback to raw struggle — non-fatal
+      }
+    }
+
     // Step 1: Get passageId — reuse cached one if switching language, otherwise ask AI
     let passageId: string;
     if (cachedPassageId) {
@@ -42,7 +63,7 @@ export async function POST(req: NextRequest) {
       try {
         aiRaw = await aiComplete({
           messages: [
-            { role: 'system', content: verseSelectionPrompt(struggle) },
+            { role: 'system', content: verseSelectionPrompt(coreStruggle) },
             { role: 'user', content: 'Pick a verse for today.' },
           ],
           temperature: 0.9,
@@ -69,7 +90,7 @@ export async function POST(req: NextRequest) {
       try {
         verifyRaw = await aiComplete({
           messages: [
-            { role: 'system', content: verifyVersePrompt(struggle, verse.reference, verse.content) },
+            { role: 'system', content: verifyVersePrompt(coreStruggle, verse.reference, verse.content) },
             { role: 'user', content: 'Verify.' },
           ],
           temperature: 0.3,

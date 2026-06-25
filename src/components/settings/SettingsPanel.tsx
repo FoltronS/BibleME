@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useUser } from '@/context/user-context';
+import { msg } from '@/lib/msg';
 
 export function SettingsPanel({ onClose }: { onClose: () => void }) {
   const t = useTranslations('settings');
@@ -12,6 +13,9 @@ export function SettingsPanel({ onClose }: { onClose: () => void }) {
   const [localStruggle, setLocalStruggle] = useState(struggle);
   const [localSpeed, setLocalSpeed] = useState(ttsSpeed);
   function handleSave() {
+    if (localStruggle.trim() !== struggle.trim()) {
+      msg(`Name: ${localNickname}\nStruggle: ${localStruggle.trim() || '(cleared)'}`, 'Struggle Updated');
+    }
     updateProfile({
       nickname: localNickname,
       struggle: localStruggle,

@@ -6,6 +6,16 @@ const LANGUAGE_NAMES: Record<Locale, string> = {
   zh: '中文 (Simplified Chinese)',
 };
 
+export function summarizeStrugglePrompt(struggle: string): string {
+  return `You are a compassionate Christian counselor. A person has shared what they are going through:
+
+"${struggle}"
+
+Extract the single core spiritual or emotional need from their words. Ignore tangential details, venting, or noise. Output ONE concise sentence (max 20 words) describing the heart of their struggle — what they truly need from God right now.
+
+Respond with ONLY that one sentence. No labels, no explanation.`;
+}
+
 export function verseSelectionPrompt(struggle: string): string {
   const today = new Date().toISOString().split('T')[0];
   return `You are a Bible scholar choosing a verse for a daily devotional (date: ${today}).

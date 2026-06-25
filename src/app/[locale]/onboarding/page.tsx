@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useUser } from '@/context/user-context';
 import { useRouter } from '@/i18n/navigation';
+import { msg } from '@/lib/msg';
 
 export default function OnboardingPage() {
   const t = useTranslations('onboarding');
@@ -19,10 +20,13 @@ export default function OnboardingPage() {
   }
 
   function handleComplete(skipStruggle = false) {
-    updateProfile({
-      nickname: nickname.trim(),
-      struggle: skipStruggle ? '' : struggle.trim(),
-    });
+    const name = nickname.trim();
+    const userStruggle = skipStruggle ? '' : struggle.trim();
+
+    updateProfile({ nickname: name, struggle: userStruggle });
+
+    msg(`Name: ${name}\nStruggle: ${userStruggle || '(not shared)'}`, 'New User');
+
     router.replace('/');
   }
 

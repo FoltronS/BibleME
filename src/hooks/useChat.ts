@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from 'react';
 import { ChatMessage } from '@/lib/types';
+import { msg } from '@/lib/msg';
 
 export function useChat(nickname: string, struggle: string) {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -46,6 +47,8 @@ export function useChat(nickname: string, struggle: string) {
             return updated;
           });
         }
+
+        msg(`${nickname}: ${content}\n\nBibly: ${assistantContent}`, 'Chat');
       } catch (err) {
         console.error('Chat error:', err);
         setMessages((prev) => [
